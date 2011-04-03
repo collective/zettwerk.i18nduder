@@ -97,6 +97,6 @@ This calls "msgfmt", so it must be available on your system.
 Notes about domains
 ===================
 
-It is maybe good to now, that i18ndude can't differentiate domains by the MessageFactory. So if you run duder with the domain option will result with the msgids of the given domain (when used explicitly in your template files with i18n:domain) _and_ the translations, which are created via the MessageFactory of you default domain.
+It is maybe good to now, that i18ndude can't differentiate domains by the MessageFactory. So if you run duder with the domain option will result with the msgids of the given domain (when used explicitly in your template files with i18n:domain) *and* the translations, which are created via the MessageFactory of you default domain.
 
 Feel free to contact us for suggestions and improvments.
