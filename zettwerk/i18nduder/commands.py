@@ -91,11 +91,16 @@ def update(options, parser):
     for lang in os.listdir('.'):
         if os.path.isdir(os.path.join('.', lang)) and \
                 'LC_MESSAGES' in os.listdir(os.path.join('.', lang)):
+            local_path = os.path.join(lang,
+                                      'LC_MESSAGES',
+                                      '%s.po' % (po_name))
             dude_opts = ['--pot',
                          '%s.pot' % (po_name),
-                         '%s/LC_MESSAGES/%s.po' % (lang, po_name)]
+                         local_path]
             sys.argv[1:] = [dude_command] + dude_opts
             i18ndude.script.main()
+            print "full path: %s\n" % (os.path.join(locales_path,
+                                                    local_path))
 
 
 def find(options, parser):
@@ -137,12 +142,16 @@ def mo(options, parser):
     for lang in os.listdir('.'):
         if os.path.isdir(os.path.join('.', lang)) and \
                 'LC_MESSAGES' in os.listdir(os.path.join('.', lang)):
+            po_path = os.path.join(lang,
+                                   'LC_MESSAGES',
+                                   '%s.po' % (po_name))
+            mo_path = os.path.join(lang,
+                                   'LC_MESSAGES',
+                                   '%s.mo' % (po_name))
             args = ['msgfmt',
-                    '%s/LC_MESSAGES/%s.po' % (lang,
-                                              po_name),
+                    po_path,
                     '-o',
-                    '%s/LC_MESSAGES/%s.mo' % (lang,
-                                              po_name)]
+                    mo_path]
             subprocess.call(args)
             print "- language: %s and domain: %s - mo created. " % (lang,
                                                                     po_name)
